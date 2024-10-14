@@ -4,9 +4,9 @@
   "description": "Bill_App",
   "main": "./build/bill-app.js",
   "scripts": {
-    "dev": "ts-node-dev --env-file=env/.development.env src/bill-app.ts",
+    "dev": "ts-node-dev --env-file=env/.development.env src/kpis-app.ts",
     "build": "rm -rf ./build && tsc",
-    "start": "pm2 start ecosystem.config.js --env production",
+    "start": "node ./build/kpis-app.js",
     "test": "jest --verbose"
   },
   "keywords": [
