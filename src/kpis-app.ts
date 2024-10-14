@@ -1,7 +1,7 @@
 import Express from "./express/Express";
-import BillFactory from "./infrastructure/factory/BillFactory";
+import KPIsFactory from "./infrastructure/factory/KPIsFactory";
 
-const billFactory = new BillFactory();
-const [billRouter] = billFactory.createRouters();
-const billApp = new Express([billRouter]);
+const kpisFactory = new KPIsFactory();
+const routers = kpisFactory.createRouters();
+const billApp = new Express(routers);
 billApp.start();
