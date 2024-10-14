@@ -6,9 +6,9 @@ import SoldProduct from "../../model/soldEntities/SoldProduct";
 export default interface ISalesData {
   getSoldAmount(iDate: Date, fDate: Date): Promise<SoldAmount[]>;
   getProducts(
-    iDate: Date,
-    fDate: Date,
-    option: SoldProductOptions
+    option: SoldProductOptions,
+    iDate?: Date,
+    fDate?: Date
   ): Promise<SoldProduct[]>;
   getCategories(): Promise<SoldCategory[]>;
 }

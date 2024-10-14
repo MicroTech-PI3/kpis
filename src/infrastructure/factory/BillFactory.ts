@@ -9,8 +9,8 @@ import MySqlConnectionConfig from "../../util/database/types/ConnectionInterface
 import EmailEnvironment from "../email/config/EmailEnvironment";
 import EmailSender from "../email/EmailSender";
 import SMTPConnection from "../email/SMTPConnection";
-import BillController from "../express/controller/BillController";
-import BillRouter from "../express/routes/BillRouter";
+import KPIsController from "../express/controller/DataController";
+import DataRouter from "../express/routes/DataRouter";
 import CategoryProvider from "../repository/provider/oldProviders/CategoryProvider";
 import CustomerProvider from "../repository/provider/oldProviders/CustomerProvider";
 import EmployeeProvider from "../repository/provider/oldProviders/EmployeeProvider";
@@ -87,10 +87,10 @@ export default class BillFactory {
     const sendingVia = new SendingVia(customerSetter);
 
     //Controller
-    const billController = new BillController(billManager, sendingVia);
+    const billController = new KPIsController(billManager, sendingVia);
 
     //Router
-    const billRouter = new BillRouter(billController);
+    const billRouter = new DataRouter(billController);
 
     return [billRouter];
   }
