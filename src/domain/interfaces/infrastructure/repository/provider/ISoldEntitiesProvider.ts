@@ -8,5 +8,5 @@ export default interface ISoldEntitiesProvider {
     fDate: Date,
     option: SoldProductOptions
   ): Promise<SoldProduct[]>;
-  findAllCategories(iDate: Date, fDate: Date): Promise<SoldCategory[]>;
+  findAllCategories(): Promise<SoldCategory[]>;
 }
