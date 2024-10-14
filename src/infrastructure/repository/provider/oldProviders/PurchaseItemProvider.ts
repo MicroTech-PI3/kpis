@@ -1,7 +1,7 @@
-import IProvider from "../../../domain/interfaces/infrastructure/repository/provider/ISoldAmountProvider";
+import IProvider from "../../../../domain/interfaces/infrastructure/repository/provider/ISoldAmountProvider";
 import DBISoldItemsProduct from "../../../domain/model/database/DBISoldItemsProduct";
 import PurchaseItem from "../../../domain/model/purchaseItem/PurchaseItem";
-import MySqlDBC from "../../../util/database/MySqlDBC";
+import MySqlDBC from "../../../../util/database/MySqlDBC";
 import ProductProvider from "./ProductProvider";
 
 export default class PurchaseItemProvider implements IProvider<PurchaseItem> {

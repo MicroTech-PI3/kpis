@@ -1,7 +1,7 @@
-import IProvider from "../../../domain/interfaces/infrastructure/repository/provider/ISoldAmountProvider";
+import IProvider from "../../../../domain/interfaces/infrastructure/repository/provider/ISoldAmountProvider";
 import DBIEmployee from "../../../domain/model/database/DBIEmployee";
 import Employee from "../../../domain/model/employee/Employee";
-import MySqlDBC from "../../../util/database/MySqlDBC";
+import MySqlDBC from "../../../../util/database/MySqlDBC";
 
 export default class EmployeeProvider implements IProvider<Employee> {
   constructor(private readonly mySqlDBC: MySqlDBC) {}

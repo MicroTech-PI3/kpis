@@ -1,9 +1,9 @@
-import IProvider from "../../../domain/interfaces/infrastructure/repository/provider/ISoldAmountProvider";
+import IProvider from "../../../../domain/interfaces/infrastructure/repository/provider/ISoldAmountProvider";
 import DBIProduct from "../../../domain/model/database/DBIProduct";
 import Product from "../../../domain/model/product/Product";
-import MySqlDBC from "../../../util/database/MySqlDBC";
+import MySqlDBC from "../../../../util/database/MySqlDBC";
 import CategoryProvider from "./CategoryProvider";
-import SupplierProvider from "./SupplierProvider";
+import SupplierProvider from "../SupplierProvider";
 
 export default class ProductProvider implements IProvider<Product> {
   constructor(

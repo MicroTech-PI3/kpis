@@ -1,7 +1,7 @@
-import IProvider from "../../../domain/interfaces/infrastructure/repository/provider/ISoldAmountProvider";
+import IProvider from "../../../../domain/interfaces/infrastructure/repository/provider/ISoldAmountProvider";
 import Category from "../../../domain/model/category/Category";
 import DBICategory from "../../../domain/model/database/DBICategory";
-import MySqlDBC from "../../../util/database/MySqlDBC";
+import MySqlDBC from "../../../../util/database/MySqlDBC";
 
 export default class CategoryProvider implements IProvider<Category> {
   constructor(private readonly mySqlDBC: MySqlDBC) {}
