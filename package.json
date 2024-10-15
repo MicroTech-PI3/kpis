@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev --env-file=env/.development.env src/kpis-app.ts",
     "build": "rm -rf ./build && tsc",
-    "start": "node ./build/kpis-app.js",
+    "start": "node ./build/src/kpis-app.js",
     "test": "jest --verbose"
   },
   "keywords": [
