@@ -4,8 +4,8 @@ import SoldProduct from "../../../../model/soldEntities/SoldProduct";
 
 export default interface ISoldEntitiesProvider {
   findAllProducts(
-    iDate: Date,
-    fDate: Date,
+    iDate: string,
+    fDate: string,
     option: SoldProductOptions
   ): Promise<SoldProduct[]>;
   findAllCategories(): Promise<SoldCategory[]>;

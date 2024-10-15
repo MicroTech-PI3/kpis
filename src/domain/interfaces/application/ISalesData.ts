@@ -4,11 +4,11 @@ import SoldCategory from "../../model/soldEntities/SoldCategory";
 import SoldProduct from "../../model/soldEntities/SoldProduct";
 
 export default interface ISalesData {
-  getSoldAmount(iDate: Date, fDate: Date): Promise<SoldAmount[]>;
+  getSoldAmount(iDate: string, fDate: string): Promise<SoldAmount[]>;
   getProducts(
     option: SoldProductOptions,
-    iDate?: Date,
-    fDate?: Date
+    iDate?: string,
+    fDate?: string
   ): Promise<SoldProduct[]>;
   getCategories(): Promise<SoldCategory[]>;
 }

@@ -9,8 +9,8 @@ export default class SoldEntitiesProvider implements ISoldEntitiesProvider {
   constructor(private readonly mySqlDBC: MySqlDBC) {}
 
   async findAllProducts(
-    iDate: Date,
-    fDate: Date,
+    iDate: string,
+    fDate: string,
     option: SoldProductOptions
   ): Promise<SoldProduct[]> {
     let query = "";

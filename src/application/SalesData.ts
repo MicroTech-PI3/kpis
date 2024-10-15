@@ -18,13 +18,13 @@ export default class SalesData implements ISalesData {
 
   async getProducts(
     option: SoldProductOptions,
-    iDate: Date = new Date(),
-    fDate: Date = new Date()
+    iDate: string = "",
+    fDate: string = ""
   ): Promise<SoldProduct[]> {
     return this.soldEntitiesProvider.findAllProducts(iDate, fDate, option);
   }
 
-  async getSoldAmount(iDate: Date, fDate: Date): Promise<SoldAmount[]> {
+  async getSoldAmount(iDate: string, fDate: string): Promise<SoldAmount[]> {
     return this.soldAmountProvider.findAll(iDate, fDate);
   }
 }
