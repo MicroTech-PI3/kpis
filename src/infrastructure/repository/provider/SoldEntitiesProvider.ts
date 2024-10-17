@@ -20,7 +20,7 @@ export default class SoldEntitiesProvider implements ISoldEntitiesProvider {
         query = `SELECT P.NAME, SUM(SIP.QUANTITY) AS QUANTITY FROM PRODUCT P JOIN SOLD_ITEMS_has_PRODUCT SIP ON P.ID = SIP.PRODUCT_ID JOIN SOLD_ITEMS SI ON SI.ID = SIP.SOLD_ITEMS_ID GROUP BY P.ID ORDER BY QUANTITY DESC LIMIT 10;`;
         break;
       case SoldProductOptions.LEAST:
-        query = `SELECT P.NAME, SUM(SIP.QUANTITY) AS QUANTITY FROM PRODUCT P JOIN SOLD_ITEMS_has_PRODUCT SIP ON P.ID = SIP.PRODUCT_ID JOIN SOLD_ITEMS SI ON SI.ID = SIP.SOLD_ITEMS_ID GROUP BY P.ID ORDER BY QUANTITY ASC LIMIT 10;`;
+        query = `SELECT P.NAME, SUM(SIP.QUANTITY) AS QUANTITY FROM PRODUCT P LEFT JOIN SOLD_ITEMS_has_PRODUCT SIP ON P.ID = SIP.PRODUCT_ID LEFT JOIN SOLD_ITEMS SI ON SI.ID = SIP.SOLD_ITEMS_ID GROUP BY P.ID ORDER BY QUANTITY ASC LIMIT 10;`;
         break;
       case SoldProductOptions.DATES:
         query = `SELECT P.NAME, SUM(SIP.QUANTITY) AS QUANTITY FROM PRODUCT P JOIN SOLD_ITEMS_has_PRODUCT SIP ON P.ID = SIP.PRODUCT_ID JOIN SOLD_ITEMS SI ON SI.ID = SIP.SOLD_ITEMS_ID WHERE SI.DATE BETWEEN '${iDate}' AND '${fDate}' GROUP BY P.ID;`;
@@ -35,7 +35,10 @@ export default class SoldEntitiesProvider implements ISoldEntitiesProvider {
         .then((result) => {
           resolve(
             result.map((soldProduct) => {
-              return new SoldProduct(soldProduct.NAME, soldProduct.QUANTITY);
+              return new SoldProduct(
+                soldProduct.NAME,
+                soldProduct.QUANTITY ?? 0
+              );
             })
           );
         })
