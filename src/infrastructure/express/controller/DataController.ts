@@ -72,4 +72,13 @@ export default class DataController {
       res.status(500).json({ error: error.message });
     }
   }
+
+  public async getTopCategories(_req: Request, res: Response): Promise<void> {
+    try {
+      const categories = await this.salesData.getCategories();
+      res.status(200).json({ categories: categories });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  }
 }

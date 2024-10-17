@@ -33,5 +33,9 @@ export default class DataRouter implements ExpressRouter {
       "/products-by-date",
       this.dataController.getProductsByDate.bind(this.dataController)
     );
+    this.router.get(
+      "/top-categories",
+      this.dataController.getTopCategories.bind(this.dataController)
+    );
   };
 }
