@@ -1,9 +1,4 @@
 export default interface IKPIsManager {
-  getSalesGrowth(
-    iMonth: number,
-    iYear: number,
-    fMonth: number,
-    fYear: number
-  ): Promise<number>;
+  getSalesGrowth(iDate: string, fDate: string): Promise<number>;
   getAvgTransactionSize(): Promise<number>;
 }

@@ -6,13 +6,8 @@ export default class KPIsController {
 
   public async getSalesGrowth(req: Request, res: Response): Promise<void> {
     try {
-      const { iMonth, fMonth, iYear, fYear } = req.body;
-      const salesGrowth = await this.kpisManager.getSalesGrowth(
-        iMonth,
-        iYear,
-        fMonth,
-        fYear
-      );
+      const { iDate, fDate } = req.body;
+      const salesGrowth = await this.kpisManager.getSalesGrowth(iDate, fDate);
       res.status(200).json({ salesGrowth: salesGrowth });
     } catch (error: any) {
       res.status(500).json({ error: error.message });

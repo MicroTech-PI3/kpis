@@ -15,30 +15,26 @@ export default class KPIsManager implements IKPIsManager {
     return getAvgTransactionSize;
   }
 
-  async getSalesGrowth(
-    iMonth: number,
-    iYear: number,
-    fMonth: number,
-    fYear: number
-  ): Promise<number> {
-    const sales = await this.salesProvider.findAll(
-      iMonth,
-      iYear,
-      fMonth,
-      fYear
+  async getSalesGrowth(iDate: string, fDate: string): Promise<number> {
+    const sales = await this.salesProvider.findAll(iDate, fDate);
+    let initialSales: number = 0;
+    let finalSales: number = 0;
+    let totalSales: number = 0;
+
+    sales.sort(
+      (a, b) =>
+        new Date(a.getDate()).getTime() - new Date(b.getDate()).getTime()
     );
-    let initialSales = 0;
-    let finalSales = 0;
+    const firstSale = sales[0];
+    const lastSale = sales[sales.length - 1];
+    sales.length = 0;
+    sales.push(firstSale, lastSale);
 
-    sales.forEach((sale) => {
-      if (sale.getMonth() === iMonth && sale.getYear() === iYear) {
-        initialSales += sale.getSales();
-      } else if (sale.getMonth() === fMonth && sale.getYear() === fYear) {
-        finalSales += sale.getSales();
-      }
-    });
+    initialSales = Number(sales[0].getSales());
+    finalSales = Number(sales[1].getSales());
+    totalSales = initialSales + finalSales;
 
-    const salesGrowth = ((finalSales - initialSales) / initialSales) * 100;
+    const salesGrowth = ((finalSales - initialSales) / totalSales) * 100;
 
     return salesGrowth;
   }

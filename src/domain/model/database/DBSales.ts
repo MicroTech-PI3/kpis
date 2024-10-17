@@ -1,5 +1,4 @@
 export default interface DBSales {
-  MONTH: number;
-  YEAR: number;
+  DATE: Date;
   SALES: number;
 }
