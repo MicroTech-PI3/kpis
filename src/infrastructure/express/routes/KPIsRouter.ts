@@ -21,5 +21,9 @@ export default class KPIsRouter implements ExpressRouter {
       "/avg-transaction-size",
       this.kpisController.getAvgTransactionSize.bind(this.kpisController)
     );
+    this.router.get(
+      "/rpr",
+      this.kpisController.getRPR.bind(this.kpisController)
+    );
   };
 }

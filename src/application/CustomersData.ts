@@ -10,4 +10,18 @@ export default class CustomersData implements ICustomersData {
   async getCustomers(): Promise<CustomerAmountSpent[]> {
     return this.customerAmountProvider.findAll();
   }
+
+  async getRPR(): Promise<number> {
+    const customers = await this.customerAmountProvider.findRepeatPurchase();
+    let total = customers.length;
+    let repeatedCustomers = 0;
+
+    customers.forEach((customer) => {
+      if (customer.getQuantity() > 1) {
+        repeatedCustomers++;
+      }
+    });
+
+    return (repeatedCustomers / total) * 100;
+  }
 }

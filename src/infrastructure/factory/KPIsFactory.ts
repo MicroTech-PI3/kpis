@@ -42,7 +42,7 @@ export default class KPIsFactory {
 
     //Controllers
     const dataController = new DataController(salesData, customersData);
-    const kpisController = new KPIsController(kpisManager);
+    const kpisController = new KPIsController(kpisManager, customersData);
 
     //Router
     const dataRouter = new DataRouter(dataController);

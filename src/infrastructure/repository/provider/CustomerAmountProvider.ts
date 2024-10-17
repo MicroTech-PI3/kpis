@@ -1,6 +1,8 @@
 import ICustomerAmountProvider from "../../../domain/interfaces/infrastructure/repository/provider/ICustomerAmountProvider";
 import CustomerAmountSpent from "../../../domain/model/CustomerAmountSpent";
+import CustomerPurchases from "../../../domain/model/CustomerPurchases";
 import DBCustomerAmountSpent from "../../../domain/model/database/DBCustomerAmountSpent";
+import { DBCustomerRepeatedPurchase } from "../../../domain/model/database/DBCustomerRepeatedPurchase";
 import MySqlDBC from "../../../util/database/MySqlDBC";
 
 export default class CustomerAmountProvider implements ICustomerAmountProvider {
@@ -19,6 +21,25 @@ export default class CustomerAmountProvider implements ICustomerAmountProvider {
                 customerAmount.NAMES,
                 customerAmount.TOTAL_SPENT
               );
+            })
+          );
+        })
+        .catch((error) => {
+          reject(new Error(error));
+        });
+    });
+  }
+
+  async findRepeatPurchase(): Promise<CustomerPurchases[]> {
+    return new Promise((resolve, reject) => {
+      this.mySqlDBC
+        .query<DBCustomerRepeatedPurchase>(
+          "SELECT COUNT(SI.CUSTOMER_ID) AS QUANTITY FROM CUSTOMER C LEFT JOIN SOLD_ITEMS SI ON SI.CUSTOMER_ID = C.ID GROUP BY C.ID;"
+        )
+        .then((result) => {
+          resolve(
+            result.map((customerPurchases) => {
+              return new CustomerPurchases(customerPurchases.QUANTITY);
             })
           );
         })
